@@ -13,7 +13,7 @@ class MonthSelector extends StatefulWidget {
   final PublishSubject<UpDownButtonEnableState>
       upDownButtonEnableStatePublishSubject;
   final Locale? locale;
-  final bool Function(DateTime) selectableMonthPredicate;
+  final bool Function(DateTime)? selectableMonthPredicate;
 
   const MonthSelector({
     Key? key,
@@ -25,7 +25,7 @@ class MonthSelector extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.locale,
-    @required this.selectableMonthPredicate,
+    this.selectableMonthPredicate,
   })  : assert(openDate != null),
         assert(selectedDate != null),
         assert(onMonthSelected != null),
@@ -166,7 +166,7 @@ class MonthSelectorState extends State<MonthSelector> {
 
   bool holdsSelectionPredicate(DateTime date) {
     if (widget.selectableMonthPredicate != null) {
-      if (widget.selectableMonthPredicate(date))
+      if (widget.selectableMonthPredicate!(date))
         return true;
       else
         return false;

@@ -19,6 +19,7 @@ Future<DateTime?> showMonthPicker({
   DateTime? firstDate,
   DateTime? lastDate,
   Locale? locale,
+  bool Function(DateTime)? selectableMonthPredicate
 }) async {
   assert(context != null);
   assert(initialDate != null);
@@ -43,7 +44,7 @@ class _MonthPickerDialog extends StatefulWidget {
   final DateTime? initialDate, firstDate, lastDate;
   final MaterialLocalizations localizations;
   final Locale? locale;
-  final bool Function(DateTime) selectableMonthPredicate;
+  final bool Function(DateTime)? selectableMonthPredicate;
 
   const _MonthPickerDialog({
     Key? key,
@@ -153,7 +154,7 @@ class _MonthPickerDialogState extends State<_MonthPickerDialog> {
             widget.localizations.cancelButtonLabel,
             style: Theme.of(context)
                 .textTheme
-                .button
+                .button!
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
         ),
@@ -163,7 +164,7 @@ class _MonthPickerDialogState extends State<_MonthPickerDialog> {
             widget.localizations.okButtonLabel,
             style: Theme.of(context)
                 .textTheme
-                .button
+                .button!
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
         )
