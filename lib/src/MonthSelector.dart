@@ -166,10 +166,7 @@ class MonthSelectorState extends State<MonthSelector> {
 
   bool holdsSelectionPredicate(DateTime date) {
     if (widget.selectableMonthPredicate != null) {
-      if (widget.selectableMonthPredicate!(date))
-        return true;
-      else
-        return false;
+      return widget.selectableMonthPredicate!(date);
     } else {
       return true;
     }
